@@ -1,9 +1,9 @@
 <?php
 require_once '../php/conexion.php';
-$sql = 'SELECT * FROM usuario';
-$result = $con->query($sql);
-$username = $result ->fetchAll();
-include 'layouts/head.php';
+$sql = 'select * from mi_bd.usuario';
+$result = $conn->query($sql);
+$usuarios = $result->fetchAll( );
+include 'layouts/perl.php';
 ?>
 
 <div class="container">
@@ -13,12 +13,25 @@ include 'layouts/head.php';
         <tr>
             <th>id</th>
             <th>nombre</th>
-            <th>apellido paterno</th>
-            <th>apellido materno</th>
+            <th>apell_mat</th>
+            <th>apell_pat</th>
+            <th>Acciones</th>
         </tr>
         <tbody>
-        <?php
 
+        <?php
+        foreach ($usuarios as $usuario){
+            echo ("<tr>");
+            echo ("<td>".$usuario['id']."</td>");
+            echo ("<td>".$usuario['nombre']."</td>");
+            echo ("<td>".$usuario['apellido_mat']."</td>");
+            echo ("<td>".$usuario['apellido_pat']."</td>");
+            echo ("<td>
+                            <a><button>Eliminar</button></a>
+                            <a><button>Actualizar</button></a>
+                       </td>");
+            echo ("</tr>");
+        }
 
         ?>
         </tbody>
